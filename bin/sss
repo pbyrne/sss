@@ -2,4 +2,4 @@
 require 'rubygems'
 require 'sss'
 
-puts SSS::HELP
+SSS.run(ARGV.first) or puts SSS::HELP
