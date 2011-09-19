@@ -4,7 +4,7 @@ require "sss/version"
 
 Gem::Specification.new do |s|
   s.name        = "sss"
-  s.version     = Sss::VERSION
+  s.version     = SSS::VERSION
   s.authors     = ["Patrick Byrne"]
   s.email       = ["patrick.byrne@tstmedia.com"]
   s.homepage    = ""

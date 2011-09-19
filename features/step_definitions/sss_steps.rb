@@ -1,4 +1,4 @@
 Then /^the help text displays$/ do
-  pending # express the regexp above with the code you wish you had
+  assert_partial_output(SSS::HELP, all_output)
 end
 
