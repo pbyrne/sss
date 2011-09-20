@@ -6,12 +6,20 @@ describe SSS, "::HELP" do
   end
 end
 
+describe SSS, ".initialize(command)" do
+  subject { SSS.new("asdf") }
+
+  it "should retain the supplied command" do
+    subject.command.should == "asdf"
+  end
+end
+
 describe SSS, ".run(command)" do
   let!(:sss) { SSS.new }
 
   it "should instantiate and run the command" do
-    SSS.should_receive(:new).and_return(sss)
-    sss.should_receive(:run).with("asdf")
+    SSS.should_receive(:new).with("asdf").and_return(sss)
+    sss.should_receive(:run)
     SSS.run("asdf")
   end
 end

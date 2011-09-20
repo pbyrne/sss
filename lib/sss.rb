@@ -1,6 +1,8 @@
 require "sss/version"
 
 class SSS
+  attr_accessor :command
+
   HELP = <<-EOH
     SSS performs SCM commands on all projects in your workspace. Set the
     SHARED_WORKSPACE environment variable if your workspace is not ~/workspace.
@@ -20,8 +22,12 @@ class SSS
     up
   )
 
-  def self.run(cmd)
-    new.run(cmd)
+  def initialize(command = nil)
+    self.command = command
+  end
+
+  def self.run(command)
+    new(command).run
   end
 
   def display_command(cmd)
