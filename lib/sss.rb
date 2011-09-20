@@ -21,9 +21,7 @@ class SSS
   )
 
   def self.run(cmd)
-    puts display_command(cmd)
-    # returning false to trigger displaying help
-    true unless display_help?(cmd)
+    new.run(cmd)
   end
 
   def display_command(cmd)

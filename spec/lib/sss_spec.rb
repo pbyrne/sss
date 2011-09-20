@@ -6,6 +6,16 @@ describe SSS, "::HELP" do
   end
 end
 
+describe SSS, ".run(command)" do
+  let!(:sss) { SSS.new }
+
+  it "should instantiate and run the command" do
+    SSS.should_receive(:new).and_return(sss)
+    sss.should_receive(:run).with("asdf")
+    SSS.run("asdf")
+  end
+end
+
 describe SSS, "#display_command" do
   it "should output that it's performing the command" do
     subject.display_command("asdf").should == "Performing asdf"
