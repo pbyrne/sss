@@ -1,6 +1,6 @@
 require "sss/version"
 
-module SSS
+class SSS
   HELP = <<-EOH
     SSS performs SCM commands on all projects in your workspace. Set the
     SHARED_WORKSPACE environment variable if your workspace is not ~/workspace.
@@ -16,7 +16,9 @@ module SSS
       wtf               (git) Compare local to tracked remote branch
   EOH
 
-  COMMANDS = []
+  COMMANDS = %w(
+    up
+  )
 
   def self.run(cmd)
     puts display_command(cmd)
@@ -24,11 +26,11 @@ module SSS
     true unless display_help?(cmd)
   end
 
-  def self.display_command(cmd)
+  def display_command(cmd)
     "Performing #{cmd}"
   end
 
-  def self.display_help?(cmd)
+  def display_help_for?(cmd)
     %w(help --help).include?(cmd) or cmd.nil? or not COMMANDS.include?(cmd)
   end
 end
