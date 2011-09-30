@@ -24,9 +24,25 @@ describe SSS, ".run(command)" do
   end
 end
 
+describe SSS, "#run" do
+  let (:sss) { SSS.new }
+
+  it "should run the command and return true if it is in the list of commands" do
+    sss.command = SSS::COMMANDS.first
+
+    sss.run.should be_true
+  end
+
+  it "should return false if the command is not on the list" do
+    sss.command = "asdfaebaeba"
+    sss.run.should be_false
+  end
+end
+
 describe SSS, "#display_command" do
   it "should output that it's performing the command" do
-    subject.display_command("asdf").should == "Performing asdf"
+    subject.command = "asdf"
+    subject.display_command.should == "Attempting to perform asdf"
   end
 end
 

@@ -30,8 +30,12 @@ class SSS
     new(command).run
   end
 
-  def display_command(cmd)
-    "Performing #{cmd}"
+  def run
+    COMMANDS.include? command
+  end
+
+  def display_command
+    "Attempting to perform #{command}"
   end
 
   def display_help_for?(cmd)
