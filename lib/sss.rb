@@ -38,6 +38,14 @@ class SSS
     end
   end
 
+  def directories
+    if File.directory? File.expand_path workspace
+      Dir["#{workspace}/*"].map { |dir| File.expand_path(dir) }
+    else
+      raise ArgumentError, "#{workspace} is not a directory. Please set the WORKSPACE environment variable to the directory containing your projects."
+    end
+  end
+
   def display_command
     "Attempting to perform #{command}"
   end

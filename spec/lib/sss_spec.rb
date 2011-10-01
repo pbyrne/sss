@@ -55,6 +55,22 @@ describe SSS, "#run" do
   end
 end
 
+describe SSS, "#directories" do
+  let (:sss) { SSS.new }
+
+  it "should return the list of directories from the workspace" do
+    # spec/lib/support/workspace/
+    sss.workspace = File.join(File.dirname(__FILE__), '../support/workspace/')
+    sss.directories.should == Dir["#{sss.workspace}/*"].map { |dir| File.expand_path(dir) }
+  end
+
+  it "should raise an error if the workspace does not exist" do
+    # non-existant spec/lib/support/noworkspace/
+    sss.workspace = File.join(File.dirname(__FILE__), '../support/noworkspace/')
+    expect { sss.directories }.to raise_error
+  end
+end
+
 describe SSS, "#display_command" do
   it "should output that it's performing the command" do
     subject.command = "asdf"
