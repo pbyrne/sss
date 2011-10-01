@@ -69,14 +69,20 @@ class SSS
 
   def directories
     if File.directory? File.expand_path workspace
-      Dir["#{workspace}/*"].map { |dir| File.expand_path(dir) }
+      Dir["#{File.expand_path(workspace)}/*"].map { |dir| File.expand_path(dir) }
     else
       raise ArgumentError, "#{workspace} is not a directory. Please set the WORKSPACE environment variable to the directory containing your projects."
     end
   end
 
   def perform_command(directory)
-    Open3.capture3 scm_command_for directory
+    command_for_directory = scm_command_for directory
+    if command_for_directory
+      display "Performing #{command} in #{directory}"
+      Open3.capture3 command_for_directory
+    else
+      display "Skipping #{directory}, no available command"
+    end
   end
 
   def scm_command_for(directory)
