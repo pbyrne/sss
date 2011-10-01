@@ -51,6 +51,10 @@ class SSS
     end
   end
 
+  def perform_command(directory)
+    Open3.capture3(command_for(command, directory))
+  end
+
   def display_command
     "Attempting to perform #{command}"
   end

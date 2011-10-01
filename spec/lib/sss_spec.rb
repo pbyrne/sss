@@ -81,6 +81,18 @@ describe SSS, "#directories" do
   end
 end
 
+describe SSS, "#perform_command(directory)" do
+  subject { SSS.new("up") }
+  let (:directory) { "/tmp/directory/" }
+
+  it "performs the appropriate SCM command for the directory" do
+    # subject.expects(:scm_for).with(directory).returns(SSS::GIT)
+    subject.should_receive(:command_for).with(subject.command, directory).and_return("asdf command")
+    Open3.should_receive(:capture3).with("asdf command")
+    subject.perform_command(directory)
+  end
+end
+
 describe SSS, "#display_command" do
   it "should output that it's performing the command" do
     subject.command = "asdf"
