@@ -31,7 +31,9 @@ class SSS
   end
 
   def run
-    COMMANDS.include? command
+    if COMMANDS.include? command
+      directories.each { |directory| perform(command, directory) }
+    end
   end
 
   def display_command

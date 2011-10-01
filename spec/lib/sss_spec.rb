@@ -28,7 +28,11 @@ describe SSS, "#run" do
   let (:sss) { SSS.new }
 
   it "should run the command and return true if it is in the list of commands" do
-    sss.command = SSS::COMMANDS.first
+    command = SSS::COMMANDS.first
+    sss.stub(:directories => ["dir1", "dir2"])
+    sss.should_receive(:perform).with(command, "dir1")
+    sss.should_receive(:perform).with(command, "dir2")
+    sss.command = command
 
     sss.run.should be_true
   end
