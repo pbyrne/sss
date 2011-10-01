@@ -40,6 +40,43 @@ describe SSS, ".initialize(command)" do
   end
 end
 
+describe SSS, "#command=" do
+  SSS::COMMANDS.keys.each do |command|
+    it "should accept #{command} as-is" do
+      subject.command = command
+      subject.command.should == command
+    end
+  end
+
+  %w(up update).each do |command|
+    it "should coerce #{command} into 'pull'" do
+      subject.command = command
+      subject.command.should == "pull"
+    end
+  end
+
+  %w(st).each do |command|
+    it "should coerce #{command} into 'status'" do
+      subject.command = command
+      subject.command.should == "status"
+    end
+  end
+
+  %w(in).each do |command|
+    it "should coerce #{command} into 'incoming'" do
+      subject.command = command
+      subject.command.should == "incoming"
+    end
+  end
+
+  %w(out).each do |command|
+    it "should coerce #{command} into 'outgoing'" do
+      subject.command = command
+      subject.command.should == "outgoing"
+    end
+  end
+end
+
 describe SSS, ".run(command)" do
   let!(:sss) { SSS.new }
 

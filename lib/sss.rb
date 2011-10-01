@@ -57,6 +57,20 @@ class SSS
     self.workspace = ENV['SSS_WORKSPACE'] || "~/workspace/"
   end
 
+  def command=(str)
+    if %w(up update).include? str
+      str = "pull"
+    elsif %w(st).include? str
+      str = "status"
+    elsif %w(in).include? str
+      str = "incoming"
+    elsif %w(out).include? str
+      str = "outgoing"
+    end
+
+    @command = str
+  end
+
   def self.run(command)
     new(command).run
   end
