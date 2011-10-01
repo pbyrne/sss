@@ -107,6 +107,15 @@ class SSS
     output.puts string
   end
 
+  def embolden(string)
+    "\033[1m#{string}\033[0m"
+  end
+
+  def directory_string(directory)
+    last_directory = directory.split("/").last
+    embolden last_directory
+  end
+
   def display_command
     "Attempting to perform #{command}"
   end

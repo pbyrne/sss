@@ -152,6 +152,22 @@ describe SSS, "#display" do
   end
 end
 
+describe SSS, "#embolden(string)" do
+  it "should wrap in bash bold characters" do
+    subject.embolden("asdf").should == "\033[1masdf\033[0m"
+  end
+end
+
+describe SSS, "#directory_string(directory)" do
+  it "should embolden and trim just the last directory of the directory path with a slash" do
+    subject.directory_string("/asdf/qwerty/aeiou/").should == subject.embolden("aeiou")
+  end
+
+  it "should embolden and trim just the last directory of the directory path without a slash" do
+    subject.directory_string("/asdf/qwerty/aeiou").should == subject.embolden("aeiou")
+  end
+end
+
 describe SSS, "#display_command" do
   it "should output that it's performing the command" do
     subject.command = "asdf"
