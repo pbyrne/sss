@@ -2,6 +2,7 @@ require "sss/version"
 
 class SSS
   attr_accessor :command
+  attr_accessor :workspace
 
   HELP = <<-EOH
     SSS performs SCM commands on all projects in your workspace. Set the
@@ -24,6 +25,7 @@ class SSS
 
   def initialize(command = nil)
     self.command = command
+    self.workspace = ENV['WORKSPACE'] || "~/workspace/"
   end
 
   def self.run(command)

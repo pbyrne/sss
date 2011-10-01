@@ -7,10 +7,22 @@ describe SSS, "::HELP" do
 end
 
 describe SSS, ".initialize(command)" do
-  subject { SSS.new("asdf") }
-
   it "should retain the supplied command" do
-    subject.command.should == "asdf"
+    SSS.new("asdf").command.should == "asdf"
+  end
+
+  it "should default the workspace to ~/workspace/" do
+    SSS.new.workspace.should == "~/workspace/"
+  end
+
+  it "should use the WORKSPACE environment variable, if present" do
+    # capture existing workspace to return afterward
+    orig_workspace = ENV['WORKSPACE']
+
+    ENV['WORKSPACE'] = "/tmp/asdf/"
+    SSS.new.workspace.should == "/tmp/asdf/"
+
+    ENV['WORKSPACE'] = orig_workspace
   end
 end
 
