@@ -103,6 +103,10 @@ class SSS
     end
   end
 
+  def display(string, output = STDOUT)
+    output.puts string
+  end
+
   def display_command
     "Attempting to perform #{command}"
   end

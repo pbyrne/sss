@@ -140,6 +140,18 @@ describe SSS, "#scm_for(directory)" do
   end
 end
 
+describe SSS, "#display" do
+  it "should push to STDOUT" do
+    STDOUT.should_receive(:puts).with("asdf")
+    subject.display("asdf")
+  end
+
+  it "should push to STDERR if specified" do
+    STDERR.should_receive(:puts).with("qwerty")
+    subject.display("qwerty", STDERR)
+  end
+end
+
 describe SSS, "#display_command" do
   it "should output that it's performing the command" do
     subject.command = "asdf"
