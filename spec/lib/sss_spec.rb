@@ -37,37 +37,33 @@ describe SSS, ".run(command)" do
 end
 
 describe SSS, "#run" do
-  let (:sss) { SSS.new }
-
   it "should run the command and return true if it is in the list of commands" do
     command = SSS::COMMANDS.first
-    sss.stub(:directories => ["dir1", "dir2"])
-    sss.should_receive(:perform_command).with("dir1")
-    sss.should_receive(:perform_command).with("dir2")
-    sss.command = command
+    subject.stub(:directories => ["dir1", "dir2"])
+    subject.should_receive(:perform_command).with("dir1")
+    subject.should_receive(:perform_command).with("dir2")
+    subject.command = command
 
-    sss.run.should be_true
+    subject.run.should be_true
   end
 
   it "should return false if the command is not on the list" do
-    sss.command = "asdfaebaeba"
-    sss.run.should be_false
+    subject.command = "asdfaebaeba"
+    subject.run.should be_false
   end
 end
 
 describe SSS, "#directories" do
-  let (:sss) { SSS.new }
-
   it "should return the list of directories from the workspace" do
     # spec/lib/support/workspace/
-    sss.workspace = File.join(File.dirname(__FILE__), '../support/workspace/')
-    sss.directories.should == Dir["#{sss.workspace}/*"].map { |dir| File.expand_path(dir) }
+    subject.workspace = File.join(File.dirname(__FILE__), '../support/workspace/')
+    subject.directories.should == Dir["#{subject.workspace}/*"].map { |dir| File.expand_path(dir) }
   end
 
   it "should raise an error if the workspace does not exist" do
     # non-existant spec/lib/support/noworkspace/
-    sss.workspace = File.join(File.dirname(__FILE__), '../support/noworkspace/')
-    expect { sss.directories }.to raise_error
+    subject.workspace = File.join(File.dirname(__FILE__), '../support/noworkspace/')
+    expect { subject.directories }.to raise_error
   end
 end
 
