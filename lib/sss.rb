@@ -102,9 +102,12 @@ class SSS
   end
 
   def scm_command_for(directory)
-    if COMMANDS[command]
-      COMMANDS[command][scm_for(directory)]
+    scm_command = COMMANDS[command][scm_for(directory)]
+    if scm_command
+      "cd #{directory} && #{scm_command}"
     end
+  rescue
+    nil
   end
 
   def scm_for(directory)

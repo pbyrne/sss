@@ -147,7 +147,7 @@ describe SSS, "#scm_command_for(directory)" do
 
   it "should return the command for the SCM of the directory" do
     subject.should_receive(:scm_for).with(directory).and_return(SSS::GIT)
-    subject.scm_command_for(directory).should == SSS::COMMANDS[subject.command][SSS::GIT]
+    subject.scm_command_for(directory).should == "cd #{directory} && #{SSS::COMMANDS[subject.command][SSS::GIT]}"
   end
 
   it "should return nil if it does not recognize the SCM for the directory" do
