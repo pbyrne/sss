@@ -79,7 +79,9 @@ class SSS
     command_for_directory = scm_command_for directory
     if command_for_directory
       display "Performing #{command} in #{directory}"
-      Open3.capture3 command_for_directory
+      stdout, stderr, status = Open3.capture3 command_for_directory
+      display stdout
+      display stderr, STDERR
     else
       display "Skipping #{directory}, no available command"
     end

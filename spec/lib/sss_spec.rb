@@ -88,7 +88,9 @@ describe SSS, "#perform_command(directory)" do
     # subject.expects(:scm_for).with(directory).returns(SSS::GIT)
     subject.should_receive(:scm_command_for).with(directory).and_return("asdf command")
     subject.should_receive(:display).with("Performing #{subject.command} in #{directory}")
-    Open3.should_receive(:capture3).with("asdf command")
+    Open3.should_receive(:capture3).with("asdf command").and_return(["stdout", "stderr", "status"])
+    subject.should_receive(:display).with("stdout")
+    subject.should_receive(:display).with("stderr", STDERR)
 
     subject.perform_command(directory)
   end
