@@ -34,7 +34,7 @@ class SSS
 
   def run
     if COMMANDS.include? command
-      directories.each { |directory| perform(command, directory) }
+      directories.each { |directory| perform_command(directory) }
     end
   end
 
