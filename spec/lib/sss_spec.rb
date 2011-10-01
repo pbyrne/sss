@@ -15,14 +15,14 @@ describe SSS, ".initialize(command)" do
     SSS.new.workspace.should == "~/workspace/"
   end
 
-  it "should use the WORKSPACE environment variable, if present" do
+  it "should use the SSS_WORKSPACE environment variable, if present" do
     # capture existing workspace to return afterward
-    orig_workspace = ENV['WORKSPACE']
+    orig_workspace = ENV['SSS_WORKSPACE']
 
-    ENV['WORKSPACE'] = "/tmp/asdf/"
+    ENV['SSS_WORKSPACE'] = "/tmp/asdf/"
     SSS.new.workspace.should == "/tmp/asdf/"
 
-    ENV['WORKSPACE'] = orig_workspace
+    ENV['SSS_WORKSPACE'] = orig_workspace
   end
 end
 

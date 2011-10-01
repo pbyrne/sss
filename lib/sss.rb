@@ -6,7 +6,7 @@ class SSS
 
   HELP = <<-EOH
     SSS performs SCM commands on all projects in your workspace. Set the
-    SHARED_WORKSPACE environment variable if your workspace is not ~/workspace.
+    SSS_WORKSPACE environment variable if your workspace is not ~/workspace.
 
     usage: sss <command>
 
@@ -25,7 +25,7 @@ class SSS
 
   def initialize(command = nil)
     self.command = command
-    self.workspace = ENV['WORKSPACE'] || "~/workspace/"
+    self.workspace = ENV['SSS_WORKSPACE'] || "~/workspace/"
   end
 
   def self.run(command)
