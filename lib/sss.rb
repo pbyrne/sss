@@ -37,8 +37,4 @@ class SSS
   def display_command
     "Attempting to perform #{command}"
   end
-
-  def display_help_for?(cmd)
-    %w(help --help).include?(cmd) or cmd.nil? or not COMMANDS.include?(cmd)
-  end
 end
