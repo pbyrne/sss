@@ -19,6 +19,11 @@ class SSS
       wtf               (git) Compare local to tracked remote branch
   EOH
 
+  # SCMs
+  GIT = :git
+  MERCURIAL = :hg
+  SUBVERSION = :svn
+
   COMMANDS = %w(
     up
   )

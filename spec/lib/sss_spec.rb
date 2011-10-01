@@ -1,8 +1,22 @@
 require 'spec_helper'
 
-describe SSS, "::HELP" do
+describe SSS, "having constants" do
   it "should have help" do
     SSS::HELP
+  end
+
+  context "for the supported SCMs" do
+    it "should have git" do
+      SSS::GIT
+    end
+
+    it "should have mercurial" do
+      SSS::MERCURIAL
+    end
+
+    it "should have subversion" do
+      SSS::SUBVERSION
+    end
   end
 end
 
