@@ -8,10 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Patrick Byrne"]
   s.email       = ["patrick.byrne@tstmedia.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
-
-  s.rubyforge_project = "sss"
+  s.summary     = %q{Quickly perform SCM (git/hg/svn) commands across your projects.}
+  s.description = %q{Command that performs SCM (git/hg/svn) commands in all projects in a directory.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
