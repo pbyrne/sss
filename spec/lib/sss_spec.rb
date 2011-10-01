@@ -112,6 +112,22 @@ describe SSS, "#scm_command_for(directory)" do
   end
 end
 
+describe SSS, "#scm_for(directory)" do
+  let(:workspace) { File.join(File.dirname(__FILE__), '../support/workspace/') }
+
+  it "should return Git if the directory contains a .git directory" do
+    subject.scm_for(File.join(workspace, "project1")).should == SSS::GIT
+  end
+
+  it "should return Mercurial if the directory contains a .hg directory" do
+    subject.scm_for(File.join(workspace, "project2")).should == SSS::MERCURIAL
+  end
+
+  it "should return Subversion if the directory contains a .svn directory" do
+    subject.scm_for(File.join(workspace, "project3")).should == SSS::SUBVERSION
+  end
+end
+
 describe SSS, "#display_command" do
   it "should output that it's performing the command" do
     subject.command = "asdf"

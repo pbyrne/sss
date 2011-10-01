@@ -85,6 +85,16 @@ class SSS
     end
   end
 
+  def scm_for(directory)
+    if File.exists?("#{directory}/.git")
+      GIT
+    elsif File.exists?("#{directory}/.hg")
+      MERCURIAL
+    elsif File.exists?("#{directory}/.svn")
+      SUBVERSION
+    end
+  end
+
   def display_command
     "Attempting to perform #{command}"
   end
