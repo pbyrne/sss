@@ -52,11 +52,10 @@ end
 
 describe SSS, "#run" do
   it "should run the command and return true if it is in the list of commands" do
-    command = SSS::COMMANDS.first
     subject.stub(:directories => ["dir1", "dir2"])
     subject.should_receive(:perform_command).with("dir1")
     subject.should_receive(:perform_command).with("dir2")
-    subject.command = command
+    subject.command = "pull"
 
     subject.run.should be_true
   end
@@ -82,14 +81,34 @@ describe SSS, "#directories" do
 end
 
 describe SSS, "#perform_command(directory)" do
-  subject { SSS.new("up") }
+  subject { SSS.new("pull") }
   let (:directory) { "/tmp/directory/" }
 
   it "performs the appropriate SCM command for the directory" do
     # subject.expects(:scm_for).with(directory).returns(SSS::GIT)
-    subject.should_receive(:command_for).with(subject.command, directory).and_return("asdf command")
+    subject.should_receive(:scm_command_for).with(directory).and_return("asdf command")
     Open3.should_receive(:capture3).with("asdf command")
     subject.perform_command(directory)
+  end
+end
+
+describe SSS, "#scm_command_for(directory)" do
+  subject { SSS.new("pull") }
+  let (:directory) { "/tmp/directory/"}
+
+  it "should return the command for the SCM of the directory" do
+    subject.should_receive(:scm_for).with(directory).and_return(SSS::GIT)
+    subject.scm_command_for(directory).should == SSS::COMMANDS[subject.command][SSS::GIT]
+  end
+
+  it "should return nil if it does not recognize the SCM for the directory" do
+    subject.should_receive(:scm_for).with(directory).and_return(nil)
+    subject.scm_command_for(directory).should be_nil
+  end
+
+  it "should return nil if it does not recognize the command" do
+    subject.command = "asdfqwerty"
+    subject.scm_command_for(directory).should be_nil
   end
 end
 

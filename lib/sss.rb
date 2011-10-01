@@ -24,9 +24,33 @@ class SSS
   MERCURIAL = :hg
   SUBVERSION = :svn
 
-  COMMANDS = %w(
-    up
-  )
+  COMMANDS = {
+    "status" => {
+      GIT => "git status",
+      MERCURIAL => "hg status",
+      SUBVERSION => "svn status",
+    },
+    "push" => {
+      GIT => "git push",
+      MERCURIAL => "hg push",
+    },
+    "pull" => {
+      GIT => "git pull",
+      MERCURIAL => "hg pull -u",
+      SUBVERSION => "svn up",
+    },
+    "incoming" => {
+      GIT => "git wtf",
+      MERCURIAL => "hg incoming",
+    },
+    "outgoing" => {
+      GIT => "git wtf",
+      MERCURIAL => "hg outgoing",
+    },
+    "wtf" => {
+      GIT => "git wtf",
+    },
+  }
 
   def initialize(command = nil)
     self.command = command
@@ -52,7 +76,13 @@ class SSS
   end
 
   def perform_command(directory)
-    Open3.capture3(command_for(command, directory))
+    Open3.capture3 scm_command_for directory
+  end
+
+  def scm_command_for(directory)
+    if COMMANDS[command]
+      COMMANDS[command][scm_for(directory)]
+    end
   end
 
   def display_command
