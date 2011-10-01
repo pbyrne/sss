@@ -122,9 +122,9 @@ describe SSS, "#perform_command(directory)" do
   let (:directory) { "/tmp/directory/" }
 
   it "performs the appropriate SCM command for the directory" do
-    # subject.expects(:scm_for).with(directory).returns(SSS::GIT)
+    subject.should_receive(:scm_for).with(directory).and_return(SSS::GIT)
     subject.should_receive(:scm_command_for).with(directory).and_return("asdf command")
-    subject.should_receive(:display).with("Performing #{subject.command} in #{subject.directory_string(directory)}")
+    subject.should_receive(:display).with("Performing #{subject.command} in #{subject.directory_string(directory)} (#{SSS::GIT})")
     Open3.should_receive(:capture3).with("asdf command").and_return(["stdout", "stderr", "status"])
     subject.should_receive(:display).with("stdout")
     subject.should_receive(:display).with("stderr", STDERR)

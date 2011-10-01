@@ -92,7 +92,7 @@ class SSS
   def perform_command(directory)
     command_for_directory = scm_command_for directory
     if command_for_directory
-      display "Performing #{command} in #{directory_string directory}"
+      display "Performing #{command} in #{directory_string directory} (#{scm_for directory})"
       stdout, stderr, status = Open3.capture3 command_for_directory
       display stdout
       display stderr, STDERR
