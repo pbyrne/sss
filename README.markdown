@@ -1,7 +1,7 @@
 SSS performs SCM commands on all projects in your workspace. Set the
 SSS_WORKSPACE environment variable if your workspace is not ~/workspace.
 
-Uusage:
+Usage:
   sss COMMAND
 
 Commands:
