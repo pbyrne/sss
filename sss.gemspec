@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = SSS::VERSION
   s.authors     = ["Patrick Byrne"]
   s.email       = ["patrick.byrne@tstmedia.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/pbyrne/sss/"
   s.summary     = %q{Quickly perform SCM (git/hg/svn) commands across your projects.}
   s.description = %q{Command that performs SCM (git/hg/svn) commands in all projects in a directory.}
 
