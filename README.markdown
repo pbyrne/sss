@@ -32,3 +32,13 @@ variable, like so for Bash:
 For git, the `out`, `in`, and `wtf` commands require the [git-wtf plugin]
 
 [git-wtf plugin]: http://git-wt-commit.rubyforge.org/#git-wtf
+
+## Problems? Suggestions?
+
+Please [file a ticket][tickets] if you have any trouble.  Also feel free
+to fork and submit a pull request with any changes you find useful.
+
+I've used versions of this script for years to keep my many projects
+up-to-date, but I'm open to suggestions to make this even more useful.
+
+[tickets]:https://github.com/pbyrne/sss/issues
