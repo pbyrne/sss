@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["patrick.byrne@tstmedia.com"]
   s.homepage    = "https://github.com/pbyrne/sss/"
   s.summary     = %q{Quickly perform SCM (git/hg/svn) commands across your projects.}
-  s.description = %q{Command that performs SCM (git/hg/svn) commands in all projects in a directory.}
+  s.description = %q{Provides the `sss` command to perform SCM (git/hg/svn) commands in all projects in a directory.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
