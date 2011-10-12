@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'cucumber'
   s.add_development_dependency 'aruba'
+  # TODO discover how to load these two gems on my mac only, not on travis CI
   # s.add_development_dependency 'rb-fsevent'
   # s.add_development_dependency 'growl_notify'
   s.add_development_dependency 'guard'
